@@ -8588,11 +8588,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\megap\\Desktop\\Everything\\BCIT\\PT\\3973\\Assign_1\\Assign1\\Assign1\\Assign1.csproj",
+      "projectUniqueName": "C:\\Users\\megap\\Desktop\\Everything\\BCIT\\PT\\3973\\Assign_1\\Assign1_MVC\\Assign1.csproj",
       "projectName": "Assign1",
-      "projectPath": "C:\\Users\\megap\\Desktop\\Everything\\BCIT\\PT\\3973\\Assign_1\\Assign1\\Assign1\\Assign1.csproj",
+      "projectPath": "C:\\Users\\megap\\Desktop\\Everything\\BCIT\\PT\\3973\\Assign_1\\Assign1_MVC\\Assign1.csproj",
       "packagesPath": "C:\\Users\\megap\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\megap\\Desktop\\Everything\\BCIT\\PT\\3973\\Assign_1\\Assign1\\Assign1\\obj\\",
+      "outputPath": "C:\\Users\\megap\\Desktop\\Everything\\BCIT\\PT\\3973\\Assign_1\\Assign1_MVC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
