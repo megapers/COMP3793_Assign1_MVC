@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Assign1.Model;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
@@ -29,25 +30,28 @@ namespace Assign1.Controllers.Api
         public async Task<IActionResult> GetBookById(int id)
         {
             var items = await getJtokenListAsync();
-            var volumeInfo = items.Select(i => i["volumeInfo"]).ToList();       
-            var theBook = volumeInfo[id].Children().ToList();
-            var title = theBook[0].First.ToString();
-            var authors = theBook[1].First.ToString();
-            var publisher = theBook[2].First.ToString();
-            var published = theBook[3].First.ToString();
-            var description = theBook[4].First.ToString();
+            var volumeInfo = items.Select(i => i["volumeInfo"]).ToList()[id];       
+            
+            var title = volumeInfo["title"].ToString();
+            var smallThumbnail = volumeInfo["imageLinks"].Children().Values<string>().ToList()[0];
+            var authors = volumeInfo["authors"].Values<string>().ToList();
+            var publisher = volumeInfo["publisher"].ToString();
+            var publishedDate = volumeInfo["publishedDate"].ToString();
+            var description = volumeInfo["description"].ToString();
+            var ISBN_10 = volumeInfo["industryIdentifiers"].Children().ToList()[1]["identifier"].ToString();
 
-            JArray array = new JArray();
-            array.Add(theBook[0].First);
-            array.Add(theBook[1].First);
-            array.Add(theBook[2].First);
-            array.Add(theBook[3].First);
-            array.Add(theBook[4].First);
-
-            JObject o = new JObject();
-            o["MyArray"] = array;
-            string json = o.ToString();
-            return Ok(json);
+            var book = new Book()
+            {
+                Title = title,
+                SmallThumbnail = smallThumbnail,
+                Authors = authors,
+                Publisher = publisher,
+                PublishedDate = publishedDate,
+                Description = description,
+                ISBN_10_Id = ISBN_10
+            };
+            
+            return Ok(book);
         }
 
 
