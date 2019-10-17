@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Assign1.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
@@ -11,34 +13,70 @@ namespace Assign1.Controllers.Api
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    //[Produces("application/json")]
     [ApiController]
     public class BooksController : ControllerBase
     {
         // GET: api/Books
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]  
         public async Task<IActionResult> GetAllTitles()
         {
-            var items = await getJtokenListAsync();
-            var titles = items.SelectMany(i => i["volumeInfo"].First).ToList();
-            var titleStrings = titles.Select(i => i.ToString()).ToList();
+            var items = new List<JToken>();
+            var titles = new List<JToken>();
+            var titleStrings = new List<string>();
+            try
+            {
+                items = await getJtokenListAsync();
+                titles = items.SelectMany(i => i["volumeInfo"].First).ToList();
+                titleStrings = titles.Select(i => i.ToString()).ToList();
+            }
+            catch (System.NullReferenceException)
+            {
+                return NotFound();
+            }
             return Ok(titleStrings);
         }
 
         // GET: api/Books/5
         [HttpGet("{id}", Name = "Get")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]        
         public async Task<IActionResult> GetBookById(int id)
         {
-            var items = await getJtokenListAsync();
-            var volumeInfo = items.Select(i => i["volumeInfo"]).ToList()[id];       
-            
-            var title = volumeInfo["title"].ToString();
-            var smallThumbnail = volumeInfo["imageLinks"].Children().Values<string>().ToList()[0];
-            var authors = volumeInfo["authors"].Values<string>().ToList();
-            var publisher = volumeInfo["publisher"].ToString();
-            var publishedDate = volumeInfo["publishedDate"].ToString();
-            var description = volumeInfo["description"].ToString();
-            var ISBN_10 = volumeInfo["industryIdentifiers"].Children().ToList()[1]["identifier"].ToString();
+            var items = new List<JToken>();
+            JToken volumeInfo = null;
+            try
+            {
+                items = await getJtokenListAsync();
+                volumeInfo = items.Select(i => i["volumeInfo"]).ToList()[id];  
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+                 
+            var title = "";
+            var smallThumbnail = "";
+            var authors = new List<string>();
+            var publisher = "";
+            var publishedDate = "";
+            var description = "";
+            var ISBN_10 = "";
+
+            try
+            {
+                title = volumeInfo["title"].ToString();
+                smallThumbnail = volumeInfo["imageLinks"].Children().Values<string>().ToList()[0];
+                authors = volumeInfo["authors"].Values<string>().ToList();
+                publisher = volumeInfo["publisher"].ToString();
+                publishedDate = volumeInfo["publishedDate"].ToString();
+                description = volumeInfo["description"].ToString();
+                ISBN_10 = volumeInfo["industryIdentifiers"].Children().ToList()[1]["identifier"].ToString();
+            }
+            catch (System.NullReferenceException)
+            {
+            }
 
             var book = new Book()
             {
