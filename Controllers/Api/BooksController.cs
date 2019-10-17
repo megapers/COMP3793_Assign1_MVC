@@ -10,7 +10,6 @@ namespace Assign1.Controllers.Api
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    //[Produces("application/json")]
     [ApiController]
     public class BooksController : ControllerBase
     {
@@ -24,11 +23,15 @@ namespace Assign1.Controllers.Api
             return Ok(titleStrings);
         }
 
-        // GET: api/Books/5
-        [HttpGet("{id}", Name = "Get")]
-        public string GetBookById(int id)
+        //GET: api/Books/5
+        [HttpGet("{id}")]
+        [Route("api/[controller]/{id:int}")]
+        public async Task<IActionResult> GetBookById(int id)
         {
-            return "value";
+            var items = await getJtokenListAsync();
+            var item = items[0];
+
+            return Ok("item");
         }
 
 

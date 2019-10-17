@@ -5,10 +5,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<html>
+    <body>
+        <h1>Book Titles</h1>
+        <ul>
+            @{
+                int counter = 0;
+                foreach(var title in Model)
+                {
+                    <a 
+                        asp-controller="Books"
+                        asp-action="GetBookById"
+                        asp-route-id = "1">
+                        <li>@title</li>
+                    </a>
+                    counter++;
+                }
+            }
 
-<body>
+
+
+
+
+
+
+            <!-- @foreach (var title in Model)
+            {
+                <a 
+                    asp-controller="Books"
+                    asp-action="GetBookById"
+                    >
+                        <li>@title</li>
+                </a>
+               
+            } -->
+       
+        </ul>
+    </body>
+</html>
+
+<!-- <body>
     <h1>Book Titles</h1>
-    <ul id="bookId"></ul>
+    <ul id="bookId">
+    </ul>
 </body>
-
+ -->
 
