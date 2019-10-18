@@ -8,5 +8,11 @@ namespace Assign1.Controllers
         {
             return View();
         }
+
+        public IActionResult GetBookById(int id)
+        {
+            ViewBag.Message = id; 
+            return View();
+        }
     }
 }

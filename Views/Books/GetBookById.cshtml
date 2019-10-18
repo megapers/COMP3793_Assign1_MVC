@@ -1,8 +1,9 @@
-﻿@model IEnumerable<string>
+@model IEnumerable<string>
 
 @{
     ViewData["Title"] = "Books";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var id = ViewBag.Message; 
 }
 
 
@@ -12,11 +13,12 @@
 
     <head>
         <script src="~/js/site.js" asp-append-version="true"></script>
-        <script type="text/javascript">getItems();</script>
+        <script type="text/javascript">getItemsbyId(@id);</script>
     </head>
     <body>
-        <h1>Book Titles</h1>
-        <ul id="bookId"></ul>
+        <!-- <h1>Book Titles</h1>
+        <ul id="bookId"></ul> -->
+        <p>@id</p>
     </body>
 
 </html>

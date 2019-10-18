@@ -415,3 +415,4 @@ C:\VIF\BCIT\COMP3973\Assign1_MVC_New\obj\Debug\netcoreapp3.0\Assign1.Views.pdb
 C:\VIF\BCIT\COMP3973\Assign1_MVC_New\obj\Debug\netcoreapp3.0\Assign1.csproj.CopyComplete
 C:\VIF\BCIT\COMP3973\Assign1_MVC_New\obj\Debug\netcoreapp3.0\Assign1.dll
 C:\VIF\BCIT\COMP3973\Assign1_MVC_New\obj\Debug\netcoreapp3.0\Assign1.pdb
+C:\VIF\BCIT\COMP3973\Assign1_MVC_New\obj\Debug\netcoreapp3.0\Razor\Views\Books\GetBookById.cshtml.g.cs

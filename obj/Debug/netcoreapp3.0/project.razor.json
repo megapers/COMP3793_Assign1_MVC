@@ -14379,6 +14379,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views\\Books\\GetBookById.cshtml",
+      "TargetPath": "Views\\Books\\GetBookById.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views\\Error.cshtml",
       "TargetPath": "Views\\Error.cshtml",
       "FileKind": "mvc"
