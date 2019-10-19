@@ -7,15 +7,21 @@ using System.Threading.Tasks;
 using Assign1.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json.Linq;
 
 namespace Assign1.Controllers.Api
 {
-    [Produces("application/json")]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     [ApiController]
     public class BooksController : ControllerBase
     {
+        private readonly IMemoryCache _cache;
+        public BooksController(IMemoryCache memoryCache)
+        {
+            _cache = memoryCache;
+        }
         // GET: api/Books
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -92,17 +98,25 @@ namespace Assign1.Controllers.Api
             return Ok(book);
         }
 
-
         private async Task<List<JToken>> getJtokenListAsync()
         {
-            string url = @"https://www.googleapis.com/books/v1/volumes?q=harry+potter";
-            var req = WebRequest.Create(url);
-            var r = await req.GetResponseAsync().ConfigureAwait(false);
-            var responseReader = new StreamReader(r.GetResponseStream());
-            var responseData = await responseReader.ReadToEndAsync();
-            var jsonObj = JObject.Parse(responseData);
-            var childItems = jsonObj["items"].Children().ToList();
-            return childItems;
+            if(!_cache.TryGetValue("cachedBooks", out List<JToken> tokenList))
+            {
+                string url = @"https://www.googleapis.com/books/v1/volumes?q=harry+potter";
+                var req = WebRequest.Create(url);
+                var r = await req.GetResponseAsync().ConfigureAwait(false);
+                var responseReader = new StreamReader(r.GetResponseStream());
+                var responseData = await responseReader.ReadToEndAsync();
+                var jsonObj = JObject.Parse(responseData);
+                tokenList = jsonObj["items"].Children().ToList();
+                _cache.Set("cachedBooks", tokenList, TimeSpan.FromSeconds(10));
+            }
+            else
+            {
+                Console.WriteLine("Cache hit");
+            }
+            return tokenList;
         }
+
     }
 }

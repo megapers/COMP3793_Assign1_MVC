@@ -10,10 +10,10 @@ function getItems() {
 }
 
 function getItemsbyId(id) {
-        fetch(uri);
-        //.then(response => response.json());
-    //     .then(data => console.log(data))
-    //     .catch(error => console.error('Unable to get items.', error));
+    var url = "https://localhost:5001/api/books/" + id;
+    $.get(url, function(data){
+        _displayBook(data);
+    });
 }
 
 function _displayItems(data) {
@@ -22,16 +22,26 @@ function _displayItems(data) {
 }
 
 function _displayBook(data){
-    //$("titleId").append(data);
-    console.log(data);
+    $("#image").attr("src", data.smallThumbnail);
+    $("#title").append(data.title);
+    $("#publisher").append(data.publisher);
+    $("#publishedDate").append(data.publishedDate);
+    $("#description").append(data.description);
+    $("#isbN_10").append(data.isbN_10_Id);
+    
+    var authors = data.authors;
+    var authorsArray = [];
+    $.each(authors, function (i, author) {
+            authorsArray.push('<li>' + author +'</li>');
+        }); 
+    $('#authors').append(authorsArray.join(''));
 }
-
 
 function populateList() {
     var items = [];
     $.each(titles, function (i, item) {
 
-        items.push('<li><a href=books/GetBookById/' + i + '>' + item + '</a></li>');
+        items.push('<li><a href = Books/GetBookById/' + i + '>' + item + '</a></li>');
         console.log(i, item)
 
     }); // close each()

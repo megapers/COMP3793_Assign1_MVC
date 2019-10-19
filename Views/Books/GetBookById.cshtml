@@ -6,19 +6,62 @@
     var id = ViewBag.Message; 
 }
 
-
 <!DOCTYPE html>
 
 <html>
 
     <head>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script type="text/javascript">getItemsbyId(@id);</script>
     </head>
     <body>
-        <!-- <h1>Book Titles</h1>
-        <ul id="bookId"></ul> -->
-        <p>@id</p>
+        <img id="image" src="" alt="Book image"/>
+        <div id="containerIntro">
+            <h4>Title: </h4>
+            <p id="title"></p>
+
+            <h4 >Authors: </h4>
+            <ul id="authors"></ul>
+
+            <h4>Publisher: </h4>
+            <p id="publisher"></p>
+
+            <h4>Date published: </h4>
+            <p id="publishedDate"></p>
+
+            <h4>Description: </h4>
+            <p id="description"></p>
+
+            <h4>ISBN_10: </h4>
+            <p id="isbN_10"></p>
+        </div>
+
+        <!-- <div id="containerIntro">
+            <h4 >Authors: </h4>
+            <ul id="authors"></ul>
+        </div> -->
+
+        <!-- <div id="containerIntro">
+            <h4>Publisher: </h4>
+            <p id="publisher"></p>
+        </div> -->
+
+        <!-- <div id="containerIntro">
+            <h4>Date published: </h4>
+            <p id="publishedDate"></p>
+        </div> -->
+
+        <!-- <div id="containerIntro">
+            <h4>Description: </h4>
+            <p id="description"></p>
+        </div> -->
+
+        <!-- <div id="containerIntro">
+            <h4>ISBN_10: </h4>
+            <p id="isbN_10"></p>
+        </div> -->
+
     </body>
 
 </html>
