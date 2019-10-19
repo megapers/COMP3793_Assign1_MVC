@@ -556,3 +556,5 @@ C:\Users\megap\Desktop\Everything\BCIT\PT\3973\Assign_1\Assign1\obj\Debug\netcor
 C:\Users\megap\Desktop\Everything\BCIT\PT\3973\Assign_1\Assign1\obj\Debug\netcoreapp3.0\Assign1.csproj.CopyComplete
 C:\Users\megap\Desktop\Everything\BCIT\PT\3973\Assign_1\Assign1\obj\Debug\netcoreapp3.0\Assign1.dll
 C:\Users\megap\Desktop\Everything\BCIT\PT\3973\Assign_1\Assign1\obj\Debug\netcoreapp3.0\Assign1.pdb
+C:\Users\megap\Desktop\Everything\BCIT\PT\3973\Assign_1\Assign1\obj\Debug\netcoreapp3.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\megap\Desktop\Everything\BCIT\PT\3973\Assign_1\Assign1\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
